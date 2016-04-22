@@ -4,7 +4,7 @@
 
 #####Q1. What is our independent variable? What is our dependent variable?
 
-1. Independent variable: the two conditions of the words
+1. Independent variable: the word/color congruency condition. It have two levels:
   1. *congruent (same ink color with word name)*
   2. *incongruent (different ink color with the word name)*
 2. Dependent variable: the time used to name the ink color.
@@ -12,8 +12,15 @@
 
 #####Q2. What is an appropriate set of hypotheses for this task? What kind of statistical test do you expect to perform? Justify your choices.
 
-1. Null hypothesis: The time used to name the colors of incongruent words is the same as the time used to name the congruent words.
-  1. Alternative Hypothesis: The time used to name the colors of incongruent words is significant different from the time used to name the colors of congruent words.
+1. Null hypothesis (H0): The time used to name the colors of incongruent words is the same as the time used to name the colors of congruent words.
+  1. The population mean for congruent (average time used to recognize the color of congruent word):μ(c)
+  2. The population mean for incongruent (average time used to recognize the color of incongruent word):μ(i)
+  3. HO: μ(c) = μ(i)
+
+
+2. Alternative Hypothesis(H1): The time used to name the colors of incongruent words is significant different from the time used to name the colors of congruent words.
+  1. H1: μ(c) ≠ μ(i)  (a two-tailed test)
+
 
 2. Statistical test: paired student t-test (two-tail)
   1. *First, we are comparing the difference of the mean (the average time used to name the ink color) from 2 groups, thus student t test would be the choice.*
@@ -101,7 +108,7 @@ The python code generating the statistic results and figures are showed in [stro
 
 [1] MacLeod, C.M. and Dunbar, K. (1988) Training and Stroop-like
 interference: evidence for a continuum of automaticity. J. Exp. Psychol.
-Learn. Mem. Cognit. 10, 304–315
+Learn. Mem. Cognit. 10, 304–315.
 [2] MacLeod and MacDonald (2000) Inter-dimensional interference in the Stroop effect: uncovering the cognitive and neural anatomy of attention. Trends in Cognitive Sciences, 4(10), 383-391.
 
 ## On-line resources for python:
