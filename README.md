@@ -44,7 +44,7 @@
 
 
 
-  ![boxplot](https://github.com/super-penguin/Udacity_Data_Analyst/blob/new_upload/boxplot.png)
+  ![boxplot](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/boxplot.png)
   1. *Boxplot shows the interquartile range, total range, median and potential outlines;  The boxplots for the two conditions are both symmetric; The median of the incongruent group is larger than the congruent group, however, there are two large outliners in the incongruent group which might pull the mean toward the larger side.*
 
 
@@ -56,7 +56,7 @@
 
 
 
-  ![Hitogram](https://github.com/super-penguin/Udacity_Data_Analyst/blob/new_upload/histogram.png)
+  ![Hitogram](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/histogram.png)
 
   1. *Histogram shows the mode, potential outlines and distribution of the data;The mode of the incongruent group (20-22ms) is larger than the mode of the congruent group (14-16ms); The distributions are similar under those two conditions and we can assume that they are both normally distributed with equal variance; From this figure, we expect that the average time for incongruent group is longer than congruent group.*
 
@@ -67,7 +67,7 @@
 
 
 
-  ![bar-chart](https://github.com/super-penguin/Udacity_Data_Analyst/blob/new_upload/bar_graph.png)
+  ![bar-chart](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/bar_graph.png)
   1. *Bar chart shows the mean and variation of the data; The mean of the incongruent group is much larger than the congruent group and the standard deviations are similar; From this figure, we expect that the incongruent group is significantly larger than the congruent group.*
 
 
@@ -95,7 +95,7 @@
   3. measuring the time and accuracy to count: show several print of a number on the screen to count: the counting results either match with the number printed or different from the number printed on the screen. I believe it would be faster with higher accuracy when the number printed on the screen matches with the count.
 
 ## Code
-The python code generating the statistic results and figures are showed in [stroop.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/new_upload/stroop.py).
+The python code generating the statistic results and figures are showed in [stroop.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/stroop.py).
 
 ## References:
 
