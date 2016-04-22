@@ -6,7 +6,7 @@
 
 1. Independent variable: the two conditions of the words
   1. *congruent (same ink color with word name)*
-  2. *incongruent (different ink color with the word name).*
+  2. *incongruent (different ink color with the word name)*
 2. Dependent variable: the time used to name the ink color.
 
 ####Q2. What is an appropriate set of hypotheses for this task? What kind of statistical test do you expect to perform? Justify your choices.
@@ -42,6 +42,8 @@
   1. *Boxplot shows the interquartile range, total range, median and potential outlines;  The boxplots for the two conditions are both symmetric; The median of the incongruent group is larger than the congruent group, however, there are two large outliners in the incongruent group which might pull the mean toward the larger side.*
 
 #####The comparison of Congruent & Incongruent conditions with Histogram
+
+
 
 
 
