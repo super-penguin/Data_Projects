@@ -36,16 +36,12 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
 4. Results & Data visualization
   1. The Spearman Correlation between the players salary(2015) and BA (2015) is: 0.185445
   2. The Spearman Correlation between the players salary (2015) and BA (2014) is: 0.217967
-
   3. The Spearman Correlation between the players salary(2015) and RBI(2015) is: 0.375105
   4. The Spearman Correlation between the players salary (2015) and RBI (2014) is: 0.456645
-
   5. The Spearman Correlation between the players salary(2015) and OBP(2015) is: 0.241051
   6. The Spearman Correlation between the players salary (2015) and OBP (2014) is: 0.340708
-
   7. The Spearman Correlation between the players salary(2015) and HR (2015) is: 0.351503
   8. The Spearman Correlation between the players salary (2015) and HR (2014) is: 0.331338
-
   9. The Pearson Correlation between the players RBI(2015) and OBP (2015) is: 0.498064
   10. The Pearson Correlation between the players HR(2015) and OBP (2015) is: 0.441864
   11. The Pearson Correlation between the players HR(2015) and RBI (2015) is: 0.885034
@@ -128,7 +124,7 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
 
   Here is the figure:
   ![Team Salary Map](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/Team_Salary_map.png)
-  *This plot shows very clearly that the baseball teams on the east and west have higher salary compared with the team in the middle or south part of USA*
+  *This plot shows very clearly that the baseball teams on the east and west coast have higher salary compared with teams at the middle or south part of the USA*
 
   **The python code for Q4**
   [map_team_salary.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/map_team_salary.py).
