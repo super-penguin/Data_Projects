@@ -34,34 +34,28 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
   4. Perform correlation analysis. Since the salary variable is not normally distributed, Spearman's rank correlation was used to explore the relationship between player's salary and different performance metrics, and Pearson's correlation was used to examine the relationship between different performance metrics.
 
 4. Results & Data visualization
+  1. The Spearman Correlation between the players salary(2015) and BA (2015) is: 0.185445
+  2. The Spearman Correlation between the players salary (2015) and BA (2014) is: 0.217967
 
-  The Spearman Correlation between the players salary(2015) and BA (2015) is: 0.185445
+  3. The Spearman Correlation between the players salary(2015) and RBI(2015) is: 0.375105
+  4. The Spearman Correlation between the players salary (2015) and RBI (2014) is: 0.456645
 
-  The Spearman Correlation between the players salary (2015) and BA (2014) is: 0.217967
+  5. The Spearman Correlation between the players salary(2015) and OBP(2015) is: 0.241051
+  6. The Spearman Correlation between the players salary (2015) and OBP (2014) is: 0.340708
 
-  The Spearman Correlation between the players salary(2015) and RBI(2015) is: 0.375105
+  7. The Spearman Correlation between the players salary(2015) and HR (2015) is: 0.351503
+  8. The Spearman Correlation between the players salary (2015) and HR (2014) is: 0.331338
 
-  The Spearman Correlation between the players salary (2015) and RBI (2014) is: 0.456645
-
-  The Spearman Correlation between the players salary(2015) and OBP(2015) is: 0.241051
-
-  The Spearman Correlation between the players salary (2015) and OBP (2014) is: 0.340708
-
-  The Spearman Correlation between the players salary(2015) and HR (2015) is: 0.351503
-
-  The Spearman Correlation between the players salary (2015) and HR (2014) is: 0.331338
-
-  The Pearson Correlation between the players RBI(2015) and OBP (2015) is: 0.498064
-
-  The Pearson Correlation between the players HR(2015) and OBP (2015) is: 0.441864
-
-  The Pearson Correlation between the players HR(2015) and RBI (2015) is: 0.885034
+  9. The Pearson Correlation between the players RBI(2015) and OBP (2015) is: 0.498064
+  10. The Pearson Correlation between the players HR(2015) and OBP (2015) is: 0.441864
+  11. The Pearson Correlation between the players HR(2015) and RBI (2015) is: 0.885034
 
   **Data visualization: Examples of histogram and scatter plot**
 
   A function called **Multiplots** is used to plot the relationship between any two variables.
 
   ![Salary(2015) & RBI(2014)](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/RBI_2014_Salary_2015.png)
+
   *This figure shows that the salary data is not normally distributed but skewed to the left. The correlation coefficient between salary (2015) and RBI (2014) is the highest in the results (0.456645), so we plotted it in this scatterplot.*
 
 
@@ -87,6 +81,7 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
   **Data visualization: An example of histogram and scatter plot**
 
   ![Salary(2015) & ERA(2014)](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/ERA_2014_Salary_2015.png)
+
   *The correlation coefficient between salary (2015) and ERA (2014) is -0.098451*
 
 5. Conclusions
@@ -115,7 +110,7 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
   *This plot shows the averaged salary of all the MLB team in 2015.*
 
   ![Scatter plot & Regression](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/Corr_ERA_W.png)
-  *This plot shows the winning record of a team is highly correlated with the ERA. Smaller ERA represents better pitching performance. It is suggested that a team's success is largely dependent on their pitchers' pitching performance*
+  *This plot shows the winning record of a team is highly correlated with the ERA. Smaller ERA represents better pitching performance. The correlation coefficient is -0.819131. It is suggested that a team's success is largely dependent on their pitchers' pitching performance*
 
 3. Conclusions
   1. A team's winning record is highly correlated with the team's pitching performance, which means a baseball team who has good defense strategies and good pitchers is more likely to win.
