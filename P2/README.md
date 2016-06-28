@@ -34,29 +34,39 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
   4. Perform correlation analysis. Since the salary variable is not normally distributed, Spearman's rank correlation was used to explore the relationship between player's salary and different performance metrics, and Pearson's correlation was used to examine the relationship between different performance metrics.
 
 4. Results & Data visualization
+
   The Spearman Correlation between the players salary(2015) and BA (2015) is: 0.185445
+
   The Spearman Correlation between the players salary (2015) and BA (2014) is: 0.217967
 
   The Spearman Correlation between the players salary(2015) and RBI(2015) is: 0.375105
+
   The Spearman Correlation between the players salary (2015) and RBI (2014) is: 0.456645
 
   The Spearman Correlation between the players salary(2015) and OBP(2015) is: 0.241051
+
   The Spearman Correlation between the players salary (2015) and OBP (2014) is: 0.340708
 
   The Spearman Correlation between the players salary(2015) and HR (2015) is: 0.351503
+
   The Spearman Correlation between the players salary (2015) and HR (2014) is: 0.331338
 
   The Pearson Correlation between the players RBI(2015) and OBP (2015) is: 0.498064
+
   The Pearson Correlation between the players HR(2015) and OBP (2015) is: 0.441864
+
   The Pearson Correlation between the players HR(2015) and RBI (2015) is: 0.885034
 
   **Data visualization: Examples of histogram and scatter plot**
+
   A function called **Multiplots** is used to plot the relationship between any two variables.
-  ![Salary(2015) & RBI(2014)]()
-  1. *This figure shows that the salary data is not normally distributed but skewed to the left. The correlation coefficient between salary (2015) and RBI (2014) is the highest in the results (0.456645), so we plotted it in this scatterplot.*
+
+  ![Salary(2015) & RBI(2014)](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/RBI_2014_Salary_2015.png)
+  *This figure shows that the salary data is not normally distributed but skewed to the left. The correlation coefficient between salary (2015) and RBI (2014) is the highest in the results (0.456645), so we plotted it in this scatterplot.*
 
 
 5. Conclusion
+
   Before performing the analysis, I hypothesized that there is a strong positive correlation between the players batting performance and salary.
 
   BA (batting average), OBP (On Base Percentage), RBI (Runs Batted In) and HR (Homeruns) were used to represent a player's batting performance. The larger those values are, the better the player performs. Because the salary level is not normally distributed, Spearman's Rank Correlation was used to calculate the correlation between different batting metrics and salary. Pearson's Correlation was used to calculate the correlation between those batting metrics.
@@ -71,18 +81,19 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
   2. Only the pitchers whose G (Games) is no less than 10 were considered in this analysis to rule out the data from rookies.  
 3. Data Wrangling Steps: same as Q1.
 4. Results & Data visualization
-  The Spearman Correlation between the players salary(2015) and Pitching performance (2015) is: -0.091880
-  The Spearman Correlation between the players salary (2015) and Pitching performance (2014) is: -0.098451
+  1. The Spearman Correlation between the players salary(2015) and Pitching performance (2015) is: -0.091880
+  2. The Spearman Correlation between the players salary (2015) and Pitching performance (2014) is: -0.098451
 
   **Data visualization: An example of histogram and scatter plot**
-  ![Salary(2015) & ERA(2014)]()
-  1. *The correlation coefficient between salary (2015) and ERA (2014) is -0.098451*
+
+  ![Salary(2015) & ERA(2014)](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/ERA_2014_Salary_2015.png)
+  *The correlation coefficient between salary (2015) and ERA (2014) is -0.098451*
 
 5. Conclusions
+
   There is no correlation between a baseball players' pitching performance and salary level (correlation coefficient: |r| < 0.1). There are at least two reasons which might lead to this result: First, a pitcher's performance could not be correctly measured by ERA; Second, even for a good pitcher, ERA is a highly unstable variable. Some pitchers might be really good in a season or in a game, however, it might be hard to maintain once the other teams start to analyze his pitching speed and trajectory. When a person becomes good in a certain motor skill, the trajectories of movements are usually highly stereotyped. With the video analyzing techniques, it would become harder and harder for a pitcher to maintain their record in the long run.  
 
   **Python Code for Q1 & Q2**
-  The python code generating the results and figures for Q1 and Q2 are showed in
   [Q1_2.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/Q1_2.py).
 
 
@@ -111,21 +122,21 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
   2. A team's winning record has no correlation with the team's BPF.
   3. A team's averaged salary is only slightly correlated with the winning record or performance of a team.
 
-  **The python code generating the results and figures Q3 is showed in**
+  **The python code for Q3**
   [Q3.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/Q3.py).  
 
 
 ####Q4. The distribution of MLB teams location and averaged salary.
-  **Map the team's averaged salary in 2015 on the USA maps.**
-  **The team's locations are marked by the location of the MBL Stadiums**
-  The size and color of each circle represents the salary level, the color is matched with the color bar on the right.
+  1. **Map the team's averaged salary in 2015 on the USA maps.**
+    The team's locations are marked by the location of the MBL Stadiums.
+    The size and color of each circle represents the salary level, the color is matched with the color bar on the right.
 
   Here is the figure:
   ![Team Salary Map](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/Team_Salary_map.png)
   *This plot shows very clearly that the baseball teams on the east and west have higher salary compared with the team in the middle or south part of USA*
 
-  **The python code generating the map in Q4 is showed in**
+  **The python code for Q4**
   [map_team_salary.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P2/map_team_salary.py).
 
 
-*Final thoughts: I knew nothing about baseball before this project, it was a lot of fun to explore and analyze those datasets. There are still more analysis I want to perform and I hope I could use other knowledge to make predication of a team's performance in the future. I would keep learning and modifying the code and update the results.
+*Final thoughts: I knew nothing about baseball before this project, it was a lot of fun to explore and analyze those datasets. There are still more analysis I want to perform and I hope I could use other knowledge to make predication of a team's performance in the future. I would keep learning and modifying the code and update the results.*
