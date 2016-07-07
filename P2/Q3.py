@@ -13,6 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats.stats import pearsonr
 import statsmodels.api as sm
+import statsmodels.formula.api as smf
 
 ##########################################################################
 ## 1. Read dataset into dataframes.
@@ -58,6 +59,10 @@ ax.set_xlabel('TeamID',fontsize = 12)
 ax.set_ylabel('Average Salary in 2015',fontsize = 12)
 ax.set_xticks(index+width/2.)
 ax.set_xticklabels(df1.index)
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+ax.get_xaxis().tick_bottom()
+ax.get_yaxis().tick_left()
 ax.set_title('The Average_Salary for MLB Team in 2015',fontsize = 16)
 
 plt.show()
@@ -121,9 +126,21 @@ ax2.legend(['Regression', 'Data'])
 ax2.set_title('The correlation between Team ERA and W',fontsize = 14)
 fig2.savefig("Corr_ERA_W.png")
 
-# Print the linear Regression results
+# Print and plot the linear Regression results
 results = sm.OLS(df4['W'],sm.add_constant(df4['ERA'])).fit()
 print (results.summary())
+
+# Check the modeling assumptions: multivariate regressions
+# Dependent variable: W
+# Independetn variable: ERA, BPF
+# Check the relationship of the W and ERA conditional on BPF
+
+reg = smf.ols('W ~ ERA + BPF', data = df4).fit()
+print (reg.summary())
+fig3 = plt.figure(3,figsize=(12,8))
+fig3 = sm.graphics.plot_regress_exog(reg, "ERA", fig=fig3)
+fig3.savefig("Model.png")
+
 
 
 

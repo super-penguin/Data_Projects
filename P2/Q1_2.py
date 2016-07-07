@@ -17,6 +17,7 @@ from scipy.stats.stats import pearsonr
 from scipy.stats.stats import spearmanr
 
 
+
 ##########################################################################
 ## 1. Read dataset into dataframes.
 
@@ -122,8 +123,25 @@ tableau10 = [(114,158,206), (255,158,74), (103,191,92), (237,102,93),
 for i in range(len(tableau10)):
     r, g, b = tableau10[i]
     tableau10[i] = (r / 255., g / 255., b / 255.)
+    
 
+# 2.6.1. single-variable (1d) explorations
+# Mean salary for all the players each year
+df = salary_data.groupby(['yearID']).mean()
+fig1=plt.figure(1)
+ax = fig1.add_subplot(111)
+mean_sal = plt.bar(df.index, df.values, color = tableau10[1])
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+ax.get_xaxis().tick_bottom()
+ax.get_yaxis().tick_left()
+ax.set_ylabel('Average Salary',fontsize=14)
+ax.set_xlabel('Years',fontsize=14)
+ax.set_title('Avearge Salary from Each Year',fontsize=16)
+ax.set_xlim(1985,2015)
+fig1.savefig("Mean_salary.png",dpi=300)
 
+# single-variable (1d) and multiple-variable (2d) explorations
 def Multiplots(data_A, data_B):
     # The dimention of the plot
     left, width = 0.1, 0.60
@@ -138,7 +156,7 @@ def Multiplots(data_A, data_B):
     rect_histx = [left, bottom_h, width, 0.2]
     rect_histy = [left_h, bottom, 0.2, height]
 
-    fig=plt.figure(1, figsize=(10, 10))
+    fig=plt.figure(2, figsize=(10, 10))
 
 
     axScatter = plt.axes(rect_scatter)
