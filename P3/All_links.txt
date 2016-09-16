@@ -1,0 +1,10 @@
+Map links:
+
+Brooklyn, New York, United States
+- Boundary of Kings County: https://www.openstreetmap.org/relation/369518#map=11/40.6444/-73.9449
+- Metro extracts: https://mapzen.com/data/metro-extracts/metro/brooklyn_new-york/
+
+Other references in this report:
+[NYC zip code](https://www.health.ny.gov/statistics/cancer/registry/appendix/neighborhoods.htm)
+
+[TIGER fixup documentation](http://wiki.openstreetmap.org/wiki/Talk:TIGER_fixup)

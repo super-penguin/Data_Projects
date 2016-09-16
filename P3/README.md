@@ -4,69 +4,68 @@
 **Brooklyn, New York, United States**
 - Boundary of Kings County: https://www.openstreetmap.org/relation/369518#map=11/40.6444/-73.9449
 - Metro extracts: https://mapzen.com/data/metro-extracts/metro/brooklyn_new-york/
-- A smaller sample (sample.osm) of the map (brooklyn_new-york.osm) was generated.
+- A smaller sample ([sample.osm](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P3/sample.osm)) of the map (brooklyn.osm) was generated.
 
 ### Exploring and Auditing the Sample DataSet
 1. Explore the tags in this file. Different tags and counts:
 ```python
-{'member': 1392,
- 'nd': 349542,
- 'node': 248527,
+ {'member': 307,
+ 'nd': 69534,
+ 'node': 49706,
  'osm': 1,
- 'relation': 174,
- 'tag': 282389,
- 'way': 49052}
+ 'relation': 35,
+ 'tag': 56355,
+ 'way': 9810}
  ```
 
 2. Explore the 'k' value of the all the tags in 'way' element and count each of them.
-    - Some interesting 'k' values I would like to explore further:
- ```python
- {'addr:postcode': 33105, 'addr:street': 33135}
- {'FIXME': 4, 'fixme': 5, ...}
- ```
-    - Besides, I would like to explore 'k' values start with "Tiger:" as well.
+    - Some interesting tags with value- 'k' I would like to explore further:
+        ```python
+        {'addr:postcode': 6604, 'addr:street': 6609}
+        {'FIXME': 1, , ...}
+        ```
+    - I would like to explore tags with 'k' start with "tiger" as well.
 
 3. Auditing street names and zip code.
-    - Surprisingly, almost all of the street names are good. There is only one over­-abbreviated street names: 'St.' ==> {'9th St.''}
-
-    - The format of the postal codes are consistent. However, a lot of them postal codes are not in brooklyn, but in Jersey City, Lower Manhattan or Queens. [NYC zip code](https://www.health.ny.gov/statistics/cancer/registry/appendix/neighborhoods.htm). All the brooklyn postal codes should start with "112**".
+    - Surprisingly, almost all of the street names are clean and well formatted. There is only one over-abbreviated street name: { 'St.' ==> '9th St.''}
+    - The format of the postal code is consistent in this dataset. However, a lot of them are not located in Brooklyn. Some are in Jersey City, Lower Manhattan and Queens. According to [NYC zip code](https://www.health.ny.gov/statistics/cancer/registry/appendix/neighborhoods.htm). All the zip code in Brooklyn should start with "112**".
 
 4. Auditing tags in 'way' element which are pulled from Tiger GPS data.
-    - The 'tiger:name_type' values are all abbreviation. And some of them include multiple names, eg 'Ave; St; Ave'.
-```python
-'tiger:name_type': {'Ave',
+    - The 'tiger:name_type' values are all abbreviation. Some of them include multiple values, eg 'Ave; St; Ave'.
+    ```python
+    'tiger:name_type': {'Ave',
                     'Ave:Pky',
                     'Ave; St; Ave',
                     'Ave;St;Ave',
                     'Blvd',....},
-```
-    - A lot of the 'tiger:zip_left' equals to 'tiger:zip_right', and 'tiger:zip_left_1' equals to 'tiger:zip_left'. It looks redundant to me. For example:
-```python
-<tag k="name" v="Harrison Street"/>
-<tag k="highway" v="residential"/>
-<tag k="tiger:cfcc" v="A41"/>
-<tag k="tiger:county" v="New York, NY"/>
-<tag k="tiger:zip_left" v="10013"/>
-<tag k="tiger:name_base" v="Harrison"/>
-<tag k="tiger:name_type" v="St"/>
-<tag k="tiger:zip_right" v="10013"/>      
-```   
-Another example:
-```python
-<tag k="name" v="112th Street"/>
-<tag k="oneway" v="yes"/>
-<tag k="highway" v="residential"/>
-<tag k="tiger:cfcc" v="A41"/>
-<tag k="tiger:county" v="Queens, NY"/>
-<tag k="tiger:reviewed" v="no"/>
-<tag k="tiger:zip_left" v="11419"/>
-<tag k="tiger:name_base" v="112th"/>
-<tag k="tiger:name_type" v="St"/>
-<tag k="tiger:zip_right" v="11419"/>
-<tag k="tiger:zip_left_1" v="11419"/>
-<tag k="tiger:zip_right_1" v="11419"/>      
-```   
-    - Inconsistent format of 'Tiger: reviewed'. According the the [TIGER fixup](http://wiki.openstreetmap.org/wiki/Talk:TIGER_fixup), when it has been reviewed, the "tiger:reviewed" tag is supposed to be removed. So the only value for this tag should be "no". However, the actually value which have been printed out include: 'yes', 'no; yes; no', 'yes; no' and '; no; no'. It is quite confusing.
+    ```
+    - A lot of the 'tiger:zip_left' equal to 'tiger:zip_right', and 'tiger:zip_left_1' equals to 'tiger:zip_left'. It looks redundant to me. For example:
+    ```python
+    <tag k="name" v="Harrison Street"/>
+    <tag k="highway" v="residential"/>
+    <tag k="tiger:cfcc" v="A41"/>
+    <tag k="tiger:county" v="New York, NY"/>
+    <tag k="tiger:zip_left" v="10013"/>
+    <tag k="tiger:name_base" v="Harrison"/>
+    <tag k="tiger:name_type" v="St"/>
+    <tag k="tiger:zip_right" v="10013"/>      
+    ```   
+    - Another example:
+    ```python
+    <tag k="name" v="112th Street"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="highway" v="residential"/>
+    <tag k="tiger:cfcc" v="A41"/>
+    <tag k="tiger:county" v="Queens, NY"/>
+    <tag k="tiger:reviewed" v="no"/>
+    <tag k="tiger:zip_left" v="11419"/>
+    <tag k="tiger:name_base" v="112th"/>
+    <tag k="tiger:name_type" v="St"/>
+    <tag k="tiger:zip_right" v="11419"/>
+    <tag k="tiger:zip_left_1" v="11419"/>
+    <tag k="tiger:zip_right_1" v="11419"/>      
+    ```   
+    - Inconsistent format of 'Tiger: reviewed'. According to the documentation [TIGER fixup](http://wiki.openstreetmap.org/wiki/Talk:TIGER_fixup), if a tiger tag has been reviewed, the "tiger:reviewed" is supposed to be removed. So the only value for this tag should be "no". However, the actually value which have been printed out include: 'yes', 'no; yes; no', 'yes; no' and '; no; no'. It is quite confusing.
     ```python
     'tiger:reviewed': {'no', 'no; yes; no', 'yes; no', 'yes', '; no; no'}
     ```
@@ -74,7 +73,7 @@ Another example:
 ### Problems Encountered in this Sample
 1. Over-abbreviated street names and tiger: name_type. They were all updated when converting from XML into JSON format for importing into MongoDB. [PYTHON code](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P3/audit_data.py)
 
-2. Wrong regions (regions which do not belong to brooklyn) revealed by the wrong zip code. The right zip code for brooklyn is between 11201 - 11256. It can be further explored in MongoDB.
+2. Wrong regions (regions that do not belong to Brooklyn) are revealed by the zip code. The correct zip code range for Brooklyn is between 11201 - 11256. It can be further explored and updated in MongoDB.
 
 3. Inconsistent format of DATA pulled from tiger GPS.
 
@@ -98,7 +97,7 @@ This section contains basic statistics about the dataset and the MongoDB queries
 > db.brooklyn.find({"type":"way"}).count()
 > 490509
 ```
-3. Top 10 contributing user
+3. Top 10 contributing users
 ```python
 > db.brooklyn.aggregate([{"$group":{"_id": "$created.user", "count":{"$sum":1}}}, {"$sort": {"count":-1}}, {"$limit":10}])
 ```
@@ -116,7 +115,9 @@ This section contains basic statistics about the dataset and the MongoDB queries
 |  "_id" : "smlevine",                |  "count" : 25054    |
 |  "_id" : "robgeb",                  |  "count" : 23676    |
 
-4. Number of total address with zip code and check how many of those are not in brooklyn.
+    - The top contributor: “Rub21_nycbuildings” contributed to this map 5 times more than the second contributor.
+
+4. Number of addresses with non-Brooklyn zip code.
 ```python
 > db.brooklyn.find({"address.postcode":{"$gte":"11201", "$lte": "11256"}}).count()
 > 290566
@@ -127,7 +128,7 @@ This section contains basic statistics about the dataset and the MongoDB queries
 ```
     - So the total number of address (including those pulled from tiger GPS) that have a valid zip code is 290566.
 
-5. Update the zip code (delete all the documents that have out of boundary zip code)
+5. Update the zip code (delete all the documents that have non-Brooklyn zip code)
 ```python
 > db.brooklyn.remove({"address.postcode":{"$gt":"11256"}})
 > WriteResult({ "nRemoved" : 80613 })
@@ -141,7 +142,7 @@ This section contains basic statistics about the dataset and the MongoDB queries
 > db.brooklyn.find({"tiger.reviewed":"yes"}).count()
 > 251
 ```
-    - If the tiger has been reviewed, the review tag is supposed to be deleted. There are 10106 tags that still have review value, but 251 of them have review value yes. So the total tags that still need to be reviewed are 9855.
+    - If a tiger data has been reviewed, the review tag is supposed to be deleted. There are 10106 tags that still have review value, but 251 of them have review value “yes”. So the total tiger tags that still need to be reviewed are 9855.
 
 7. Explore the top three amenities in brooklyn.
 ```python
@@ -158,20 +159,50 @@ This section contains basic statistics about the dataset and the MongoDB queries
 > { "_id" : "pizza", "count" : 47 }
 > { "_id" : "italian", "count" : 43 }
 ```
-    - **Conclusion: First, the large number of bicycle_parking is mainly due to the bike share system lunched by Mayor Bloomberg and Department of Transportation Commissioner Janette Sadik-Khan. Second, the dominant religion in brooklyn is unsurprising Christian. Finally, the documentation of restaurants in brooklyn needs to be improved. Various of cuisines are not categorized yet.**
-    - Here are some examples of uncategorized restaurants:
-```python   
-<node changeset="6496165" id="1013624842" lat="40.716904" lon="-73.999527" timestamp="2010-11-30T17:39:27Z" uid="29040" user="chrismcnally" version="1">
-<tag k="name" v="China Village Restaurant"/>
-<tag k="amenity" v="restaurant"/>
-<tag k="addr:street" v="Baxter Street"/>
-<tag k="addr:housenumber" v="94"/>
+    - **Conclusion: First, the large number of bicycle parking stands out. It is due to the bike share system (CityRacks) lunched by Mayor Bloomberg and Department of Transportation Commissioner Janette Sadik-Khan. Second, the dominant religion in Brooklyn is unsurprising: Christian. Finally, the documentation of restaurants in this dataset needs to be improved. Various of cuisines are not well categorized yet.**
 
-<node changeset="11446248" id="1153146341" lat="40.7029557" lon="-74.0132642" timestamp="2012-04-29T03:27:09Z" uid="290680" user="wheelmap_visitor" version="4">
-<tag k="name" v="Au Bon Pain"/>
-<tag k="amenity" v="restaurant"/>
-<tag k="wheelchair" v="limited"/>
+    - Here are some examples of uncategorized restaurants:
+    ```python   
+    <node changeset="6496165" id="1013624842" lat="40.716904" lon="-73.999527" timestamp="2010-11-30T17:39:27Z" uid="29040" user="chrismcnally" version="1">
+    <tag k="name" v="China Village Restaurant"/>
+    <tag k="amenity" v="restaurant"/>
+    <tag k="addr:street" v="Baxter Street"/>
+    <tag k="addr:housenumber" v="94"/>
+
+    <node changeset="11446248" id="1153146341" lat="40.7029557" lon="-74.0132642" timestamp="2012-04-29T03:27:09Z" uid="290680" user="wheelmap_visitor" version="4">
+    <tag k="name" v="Au Bon Pain"/>
+    <tag k="amenity" v="restaurant"/>
+    <tag k="wheelchair" v="limited"/>
+    ```
+
+8. Visualization of the distribution of all amenity in Brooklyn.
+```python
+> db.brooklyn.find({'amenity':{"$exists":1}}).count()
+> 8374
+> db.brooklyn.aggregate([{"$match":{'amenity':{$exists:1}}},{"$group":{'_id':'$amenity',"count":{"$sum":1}}},{"$sort":{"count":-1}},{"$limit":30}])
 ```
+Pie Chart of the bike related amenity vs. all the rest amenity in Brooklyn:
+![alt text](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P3/bike_vs_other.png)
+
+Pie Chart of all the other amenity in Brooklyn except bike related:
+![alt text](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P3/rest_anemity.png)
+
+Here is the way I categorized those data into figures:
+|  Amenity_Type   | 	Count_Type   |  	Amenity_Name                     |
+| --------------- | ---------------- | ------------------------------------- |
+| Bicycle 	      | 3083	         | bicycle_parking, bicycle_rental       |
+| Religion        | 834              | place of worship                      |
+| Food Service	  |	1524             | restaurant, cafe, bar, fast_food, pub |
+| Education       | 652              | school, library, university, college  |
+| Public Service  | 210              | fire_station, police, postoffice      |
+| Health          | 226              | hospital, pharmacy, doctors           |
+| Car Service	  | 806	             | parking, fuel, car_sharing            |
+| Others          | 1039             |                                       |
+
+
+**Conclusion: Those results indicate that Brooklyn is populated and good living place. It has great amount of food services around and plenty of community churches. However, compared with the living condition, the education part is a little weak. Maybe the government should consider more public libraries or schools in Brooklyn. However, more data about populations age, education level and economic situations is need to draw any conclusion on this. What’s more, the health system seems pretty weak in Brooklyn. Data of family doctors and small clinics might be missing from this dataset. I believe more data about health related amenity need to be updated. However, it also suggested the health system need to be improved largely in Brooklyn.**
+
+
 ### Other Thoughts
 First, the quality of OpenStreetMap data for brooklyn is pretty good. Very little error in the format of addresses and zip code. However, all the data pulled from tiger GPS need to be fixed. It has some redundant fields, for example, some of the location has zip_left_1, zip_left_2, zip_right_1, zip_right_2 or more, but all those zip codes are exactly the same. I think it is reasonable to reduce them to one if they all have the same value.
 
