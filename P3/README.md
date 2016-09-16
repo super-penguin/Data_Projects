@@ -20,10 +20,10 @@
 
 2. Explore the 'k' value of the all the tags in 'way' element and count each of them.
     - Some interesting tags with value- 'k' I would like to explore further:
-        ```python
-        {'addr:postcode': 6604, 'addr:street': 6609}
-        {'FIXME': 1, , ...}
-        ```
+    ```python
+    {'addr:postcode': 6604, 'addr:street': 6609}
+    {'FIXME': 1, , ...}
+    ```
     - I would like to explore tags with 'k' start with "tiger" as well.
 
 3. Auditing street names and zip code.
@@ -85,19 +85,21 @@ This section contains basic statistics about the dataset and the MongoDB queries
     - brooklyn.osm ......... 666.2 MB
     - brooklyn.osm.json .... 725.4 MB
 
-1. Number of documents
+
+Number of documents
 ```python
 > db.brooklyn.find().count()
 > 2975785
 ```
-2. Number of nodes and ways
+
+Number of nodes and ways
 ```python
 > db.brooklyn.find({"type":"node"}).count()
 > 2485112
 > db.brooklyn.find({"type":"way"}).count()
 > 490509
 ```
-3. Top 10 contributing users
+Top 10 contributing users
 ```python
 > db.brooklyn.aggregate([{"$group":{"_id": "$created.user", "count":{"$sum":1}}}, {"$sort": {"count":-1}}, {"$limit":10}])
 ```
@@ -117,7 +119,7 @@ This section contains basic statistics about the dataset and the MongoDB queries
 
     - The top contributor: “Rub21_nycbuildings” contributed to this map 5 times more than the second contributor.
 
-4. Number of addresses with non-Brooklyn zip code.
+Number of addresses with non-Brooklyn zip code.
 ```python
 > db.brooklyn.find({"address.postcode":{"$gte":"11201", "$lte": "11256"}}).count()
 > 290566
@@ -128,14 +130,15 @@ This section contains basic statistics about the dataset and the MongoDB queries
 ```
     - So the total number of address (including those pulled from tiger GPS) that have a valid zip code is 290566.
 
-5. Update the zip code (delete all the documents that have non-Brooklyn zip code)
+Update the zip code (delete all the documents that have non-Brooklyn zip code)
 ```python
 > db.brooklyn.remove({"address.postcode":{"$gt":"11256"}})
 > WriteResult({ "nRemoved" : 80613 })
 > db.brooklyn.remove({"address.postcode":{"$lt":"11201"}})
 > WriteResult({ "nRemoved" : 16413 })
 ```
-6. Explore how many of the tiger tag still need to be reviewed after updating zip code.
+
+Explore how many of the tiger tag still need to be reviewed after updating zip code.
 ```python
 > db.brooklyn.find({"tiger.reviewed":{"$exists": 1}}).count()
 > 10106
@@ -144,7 +147,8 @@ This section contains basic statistics about the dataset and the MongoDB queries
 ```
     - If a tiger data has been reviewed, the review tag is supposed to be deleted. There are 10106 tags that still have review value, but 251 of them have review value “yes”. So the total tiger tags that still need to be reviewed are 9855.
 
-7. Explore the top three amenities in brooklyn.
+
+Explore the top three amenities in brooklyn.
 ```python
 > db.brooklyn.aggregate([{"$match":{'amenity':{$exists:1}}},{"$group":{'_id':'$amenity',"count":{"$sum":1}}},{"$sort":{"count":-1}},{"$limit":3}])
 > { "_id" : "bicycle_parking", "count" : 2818 }
@@ -159,7 +163,7 @@ This section contains basic statistics about the dataset and the MongoDB queries
 > { "_id" : "pizza", "count" : 47 }
 > { "_id" : "italian", "count" : 43 }
 ```
-    - **Conclusion: First, the large number of bicycle parking stands out. It is due to the bike share system (CityRacks) lunched by Mayor Bloomberg and Department of Transportation Commissioner Janette Sadik-Khan. Second, the dominant religion in Brooklyn is unsurprising: Christian. Finally, the documentation of restaurants in this dataset needs to be improved. Various of cuisines are not well categorized yet.**
+    *Conclusion: First, the large number of bicycle parking stands out. It is due to the bike share system (CityRacks) lunched by Mayor Bloomberg and Department of Transportation Commissioner Janette Sadik-Khan. Second, the dominant religion in Brooklyn is unsurprising: Christian. Finally, the documentation of restaurants in this dataset needs to be improved. Various of cuisines are not well categorized yet.*
 
     - Here are some examples of uncategorized restaurants:
     ```python   
@@ -175,7 +179,7 @@ This section contains basic statistics about the dataset and the MongoDB queries
     <tag k="wheelchair" v="limited"/>
     ```
 
-8. Visualization of the distribution of all amenity in Brooklyn.
+Visualization of the distribution of all amenity in Brooklyn.
 ```python
 > db.brooklyn.find({'amenity':{"$exists":1}}).count()
 > 8374
@@ -188,6 +192,7 @@ Pie Chart of all the other amenity in Brooklyn except bike related:
 ![alt text](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P3/rest_anemity.png)
 
 Here is the way I categorized those data into figures:
+
 |  Amenity_Type   | 	Count_Type   |  	Amenity_Name                     |
 | --------------- | ---------------- | ------------------------------------- |
 | Bicycle 	      | 3083	         | bicycle_parking, bicycle_rental       |
