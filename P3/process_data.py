@@ -18,6 +18,8 @@ mapping = { "St": "Street", "St.": "Street", "Blvd": "Boulevard", "Pl": "Place",
             "Plz": "Plaza", "Rd": "Road", "Sq": "Square", "Ter": "Terrace", "Tpke": "Turnpike", "Tunl": "Tunnel",
             "Ave": "Avenue"}
 
+
+
 # Validate the name_type for tiger
 def is_valid_name_type (elem, value):
     return (elem.startswith("name_type") and (":" not in value))
@@ -41,8 +43,17 @@ def update_tiger(name, mapping):
     name = ";".join(name)
     return name
 
+# Updatae invalid zip code
+valid_postcode = re.compile(r'^[0-9]{5}(?:-[0-9]{4})?$')
+def update_postcode (zip):
+    if (valid_postcode.match(zip)):
+        return (zip)
+    else:
+        return ("Need_to_be_fixed")
+
 # Save those tags json file for MongoDB database
 problemchars = re.compile(r'[=\+/&<>\'"\?%#$@\,\. \t\r\n]')
+
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
@@ -85,6 +96,8 @@ def shape_element(elem):
                     if ':' not in name:
                         if name == 'street':
                             val = update_street_name(val, mapping)
+                        elif name == 'postcode':
+                            val = update_postcode(val)
                         node['address'][name] = val
 
             elif (not problemchars.search(key)) and (key.startswith('tiger:')):

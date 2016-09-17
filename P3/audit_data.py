@@ -72,6 +72,8 @@ if __name__ == '__main__':
 # 4. Audit addr:postcode for element in 'way'
 osm_file = open("sample.osm","rb")
 zip_code = {}
+invalid_zip_code = {}
+valid_postcode = re.compile(r'^[0-9]{5}(?:-[0-9]{4})?$')
 
 def audit_zip_code (zip_code, zip):
     if zip in zip_code.keys():
@@ -89,14 +91,26 @@ def print_sorted_zipcode (d):
 def is_zip_code (elem):
     return (elem.attrib["k"] == "addr:postcode")
 
+# Check if the zip code is in valid format
+def is_valid_zip (zip_code):
+    return (valid_postcode.match(zip_code))
+
 def audit():
     for event, elem in ET.iterparse(osm_file):
         if (elem.tag == "way"):
             for tag in elem.iter("tag"):
                 if is_zip_code(tag):
-                    audit_zip_code(zip_code, tag.attrib["v"])
+                    if is_valid_zip(tag.attrib["v"]):
+                        audit_zip_code(zip_code, tag.attrib["v"])
+                    else:
+                        audit_zip_code(invalid_zip_code, tag.attrib["v"])
+
+
+    print ("Valid zip code:\n")
     print_sorted_zipcode(zip_code)
     #print(*zip_code, sep='\n')
+    print ("Invalid zip code:\n")
+    print_sorted_zipcode(invalid_zip_code)
 
 if __name__ == '__main__':
     audit()
