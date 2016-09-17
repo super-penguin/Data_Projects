@@ -28,7 +28,7 @@
 
 3. Auditing street names and zip code.
     - Surprisingly, almost all of the street names are clean and well formatted. There is only one over-abbreviated street name: { 'St.' ==> '9th St.''}
-    - The format of the postal code is consistent in this dataset. However, a lot of them are not located in Brooklyn. Some are in Jersey City, Lower Manhattan and Queens. According to [NYC zip code](https://www.health.ny.gov/statistics/cancer/registry/appendix/neighborhoods.htm). All the zip code in Brooklyn should start with "112**".
+    - The format of the postal code is consistent in this dataset. It is checked by the function "is_valid_zip" (valid zip code is consisted of 5 digits, eg.11204,  or 9 digits, eg.11204-3965). No invalid zip code is found in this sample dataset. However, a lot of them are not located in Brooklyn. Some are in Jersey City, Lower Manhattan and Queens. According to [NYC zip code](https://www.health.ny.gov/statistics/cancer/registry/appendix/neighborhoods.htm). All the zip code in Brooklyn should start with "112**".
 
 4. Auditing tags in 'way' element which are pulled from Tiger GPS data.
     - The 'tiger:name_type' values are all abbreviation. Some of them include multiple values, eg 'Ave; St; Ave'.
@@ -73,7 +73,7 @@
 ### Problems Encountered in this Sample
 1. Over-abbreviated street names and tiger: name_type. They were all updated when converting from XML into JSON format for importing into MongoDB. [PYTHON code](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P3/audit_data.py)
 
-2. Wrong regions (regions that do not belong to Brooklyn) are revealed by the zip code. The correct zip code range for Brooklyn is between 11201 - 11256. It can be further explored and updated in MongoDB.
+2. Wrong regions (regions that do not belong to Brooklyn) are revealed by the zip code. The correct zip code range for Brooklyn is between 11201 - 11256. It can be further explored and updated in MongoDB. I didn't notice any wrong format of zip code in the sample dataset, when processing the actual dataset, there is a function called "update_postcode" in the [process_data.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/P3/process_data.py). If the zip code is not in valid format, it will be marked as "Need_to_be_fixed".
 
 3. Inconsistent format of DATA pulled from tiger GPS.
 
@@ -208,9 +208,17 @@ Here is the way I categorized those data into figures:
 **Conclusion: Those results indicate that Brooklyn is populated and good living place. It has great amount of food services around and plenty of community churches. However, compared with the living condition, the education part is a little weak. Maybe the government should consider more public libraries or schools in Brooklyn. However, more data about populations age, education level and economic situations is need to draw any conclusion on this. What’s more, the health system seems pretty weak in Brooklyn. Data of family doctors and small clinics might be missing from this dataset. I believe more data about health related amenity need to be updated. However, it also suggested the health system need to be improved largely in Brooklyn.**
 
 
-### Other Thoughts
-First, the quality of OpenStreetMap data for brooklyn is pretty good. Very little error in the format of addresses and zip code. However, all the data pulled from tiger GPS need to be fixed. It has some redundant fields, for example, some of the location has zip_left_1, zip_left_2, zip_right_1, zip_right_2 or more, but all those zip codes are exactly the same. I think it is reasonable to reduce them to one if they all have the same value.
+### Other Ideas
+If you choose to make this your proposed improvement, additional details about the implementation should be included. Make sure that you include a thorough discussion of both the benefits and the anticipated problems/challenges associated with the implementation. Please note that you can be rather creative here, as you don't need to actually implement it. I have seen students proposing the development of an app using OSM data to suggest bike routes, cross validation of OSM with external data sources through APIs and the establishment of a reward system for active OSM contributors.
 
-Second, as more people moving to brooklyn recent years, the variety and number of restaurants increased enormously. Thus it definitely needs to be updated to provide valuable information for the economic of brooklyn.
+1. First, the quality of OpenStreetMap data for brooklyn is pretty good. Very little error in the format of addresses and zip code. However, all the data pulled from tiger GPS need to be fixed. It has some redundant fields, for example, some of the location has zip_left_1, zip_left_2, zip_right_1, zip_right_2 or more, but all those zip codes are exactly the same. I think it is reasonable to reduce them to one if they all have the same value.
+    - Proposed improvement: simplify the "postcode" in tiger tag. If the zip_left, zip_left_1 and zip_left_2 (if it exists) are all the same value, they can be combined into one field - zip_left. If they are different, they should be combined into one with all the unique value. The same procedure could be performed on zip_right too; Then if the value of zip_left equals to zip_right, combine them into one - zip_code.
+    - Benefits: It would save space to store those data by reducing those redundant fields. Also, it seems easier for people to review those tiger data in the future.
+    - Anticipated problems: some people do love the zip_left and zip_right function of tiger GPS, because sometimes the zip code can be different on the same street.
 
-Finally, comparison of the development of biking system in brooklyn with the traffic situation and health situation can be a very interesting project to dive in. It might help us gain valuable insight into the impact of biking system on local economy.
+2. Second, as more people moving to brooklyn recent years, the variety and number of restaurants increased enormously. Thus it definitely needs to be updated to provide valuable information for the economic of brooklyn.
+
+3. Finally, comparison of the development of biking system in brooklyn with the traffic situation and health situation can be a very interesting project to dive in. It might help us gain valuable insight into the impact of biking system on local economy.
+    - Proposed improvement: make a app for biking in NYC or brooklyn. This app would include all the bicycle_parking spot which will help the bikers to find parking easily. As suggested by the reviewer, it would awesome to include all the biking lane on this app. Another important feature would be including the traffic situation in real time (I guess those information could be pulled out from google map and merge into the biking app). Basically it gives people options, if the traffic is really bad on one day, biking might be a better option. Another idea is to input the start location and destination, input the bike type and the biker's body type, the app could calculate how much calories are burned by the time used for the biking trip.
+    - Benefits: it would be an GPS + parking + fitness app for bikers. All in one.
+    - Anticipated problems: google map has biking routes already, and a lot of other fitness app has biking calories calculator. The major problem is to merge all those data into one app, and also add more features like bicycle_parking.
