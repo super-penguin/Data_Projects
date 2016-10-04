@@ -93,9 +93,11 @@ All the datasets used here are downloaded from [Baseball data](http://www.seanla
 4.  Results & Data Visualization
     - Variables: Player’s salary in 2015; player’s ERA in 2014
         ![2D_plot](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/MLB_Salary_Analysis/ERA_2014_Salary_2015.png)
+
         *This figure is composed of the 1d exploration of pitcher’s salary in 2015, 1d exploration of pitcher’s ERA in 2014 and 2d exploration of the two variables. The histogram on the top (blue) shows the distribution of pitcher’s salary in 2015. It is highly skewed to the left (lower salary). The histogram on the right (red) shows the distribution of pitcher’s ERA in 2014. It is normal distributed. The scatter plot in the middle shows the relationship between player’s ERA in 2014 and salary in 2015. They are not correlated (The Spearman correlation coefficient is -0.098451).*
 
     - Correlation Analysis
+
         |  **Spearman Correlation Coefficient**  |  Players Salary in 2015  |
         | -------------------------------------- | ------------------------ |
         |  Pitcher’s ERA in 2015                 |  -0.091880               |
