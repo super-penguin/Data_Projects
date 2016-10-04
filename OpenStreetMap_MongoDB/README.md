@@ -4,7 +4,7 @@
 **Brooklyn, New York, United States**
 - Boundary of Kings County: https://www.openstreetmap.org/relation/369518#map=11/40.6444/-73.9449
 - Metro extracts: https://mapzen.com/data/metro-extracts/metro/brooklyn_new-york/
-- A smaller sample ([sample.osm](Udacity_Data_Analyst/OpenStreetMap_MongoDB/sample.osm) of the map (brooklyn.osm) was generated.
+- A smaller sample ([sample.osm](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/OpenStreetMap_MongoDB/sample.osm) of the map (brooklyn.osm) was generated.
 
 ### Exploring and Auditing the Sample DataSet
 1. Explore the tags in this file. Different tags and counts:
@@ -71,15 +71,15 @@
     ```
 
 ### Problems Encountered in this Sample
-1. Over-abbreviated street names and tiger: name_type. They were all updated when converting from XML into JSON format for importing into MongoDB. [PYTHON code](Udacity_Data_Analyst/OpenStreetMap_MongoDB/audit_data.py)
+1. Over-abbreviated street names and tiger: name_type. They were all updated when converting from XML into JSON format for importing into MongoDB. [PYTHON code](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/OpenStreetMap_MongoDB/audit_data.py)
 
-2. Wrong regions (regions that do not belong to Brooklyn) are revealed by the zip code. The correct zip code range for Brooklyn is between 11201 - 11256. It can be further explored and updated in MongoDB. I didn't notice any wrong format of zip code in the sample dataset, when processing the actual dataset, there is a function called "update_postcode" in the [process_data.py](Udacity_Data_Analyst/OpenStreetMap_MongoDB/process_data.py). If the zip code is not in valid format, it will be marked as "Need_to_be_fixed".
+2. Wrong regions (regions that do not belong to Brooklyn) are revealed by the zip code. The correct zip code range for Brooklyn is between 11201 - 11256. It can be further explored and updated in MongoDB. I didn't notice any wrong format of zip code in the sample dataset, when processing the actual dataset, there is a function called "update_postcode" in the [process_data.py](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/OpenStreetMap_MongoDB/process_data.py). If the zip code is not in valid format, it will be marked as "Need_to_be_fixed".
 
 3. Inconsistent format of DATA pulled from tiger GPS.
 
 ### Data Overview
 This section contains basic statistics about the dataset and the MongoDB queries used to gather them.
-[code](Udacity_Data_Analyst/OpenStreetMap_MongoDB/process_data.py)
+[code](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/OpenStreetMap_MongoDB/process_data.py)
 
 ##### File sizes
     - brooklyn.osm ......... 666.2 MB
@@ -186,10 +186,10 @@ Visualization of the distribution of all amenity in Brooklyn.
 > db.brooklyn.aggregate([{"$match":{'amenity':{$exists:1}}},{"$group":{'_id':'$amenity',"count":{"$sum":1}}},{"$sort":{"count":-1}},{"$limit":30}])
 ```
 Pie Chart of the bike related amenity vs. all the rest amenity in Brooklyn:
-![alt text](Udacity_Data_Analyst/OpenStreetMap_MongoDB/bike_vs_other.png)
+![alt text](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/OpenStreetMap_MongoDB/bike_vs_other.png)
 
 Pie Chart of all the other amenity in Brooklyn except bike related:
-![alt text](Udacity_Data_Analyst/OpenStreetMap_MongoDB/rest_anemity.png)
+![alt text](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/OpenStreetMap_MongoDB/rest_anemity.png)
 
 Here is the way I categorized those data into figures:
 
