@@ -38,8 +38,10 @@ Collecting data for such a dramatic business failure was not easy. Although the 
 1. The biggest outlier in this dataset is "TOTAL", which describes the sum of each financial features for all the subjects. It could not be used to identify POIs, thus it is removed first.
 
 2. Histogram showing all the financial features and email features of both POI and Non-POI. It seems to have 1 or 2 extreme large values in most of the financial features, and they were from 'LAY KENNETH L' and 'SKILLING JEFFREY K'. Kenneth Lay and Jeffrey Skilling are both the major POIs involved in the scandal, thus it is not appropriate to consider them as outliers. In conclusion, all the data points are included in this project.
-    ![Histogram of the financial features](_)
-    ![Histogram of the email features](_)
+
+    ![Histogram of the financial features](_https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/Identify%20Fraud%20from%20Enron%20Email/financial_features.png)
+
+    ![Histogram of the email features](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/Identify%20Fraud%20from%20Enron%20Email/email_features.png)
 
 
 
@@ -87,6 +89,7 @@ Collecting data for such a dramatic business failure was not easy. Although the 
         Based on the those rules, preprocessing steps including SelectKBest, correlation analysis and feature scaling were performed before fitting the data.
 
         * Score of the K-best features:
+
         | features                        | Scores                       |    Rank    |
         | ------------------------------- | ---------------------------- | ---------- |
         | 'exercised_stock_options'       | 23.686304622052319           |  Top 1     |
@@ -102,7 +105,7 @@ Collecting data for such a dramatic business failure was not easy. Although the 
         | 'exercised_stock_percentage'    | 0.14069235754394752          |            |
 
         For the top 5 features, 'exercised_stock_options' is highly correlated with 'total_stock_value', 'Total_income' and 'restricted_stock', and it is moderately correlated with 'salary' as well.
-        ![Correlation matrix](_)
+        ![Correlation matrix](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/Identify%20Fraud%20from%20Enron%20Email/correlation_matrix.png)
         Thus, in our initial testing phase, only 'poi' and 'exercised_stock_options' were used to train the dataset. In the next parameter tuning phase, PCA and SelectKBest will be used together to make feature selection.
 
     - Decision Tree Classifier
@@ -125,6 +128,16 @@ Collecting data for such a dramatic business failure was not easy. Although the 
 2. Based on our original testing with different classifiers, **K Nearest Neighbors and SVC** will be further tuned with Cross-validation.
 
 #### 5. Parameter tuning   
+Final results:
+
+| Classifiers            |  Accuracy           |  Recall          |  Precision       |
+| ---------------------- | ------------------- | ---------------- | ---------------- |
+| K Nearest Neighbors    | 0.904762            | 0.641026         | 0.641026         |
+| SVC                    | 0.928571            | 0.500000         | 0.464286         |
+| **AdaBoostClassifier** | **0.928571**        | **0.653846**     | **0.725000**     |
+
+
+
 1. Cross-validation for K Nearest Neighbors
 
    Pipeline(steps=[('features', FeatureUnion(n_jobs=1,
@@ -134,20 +147,12 @@ Collecting data for such a dramatic business failure was not easy. Although the 
               metric_params=None, n_jobs=1, n_neighbors=5, p=2,
               weights='uniform'))])
 
-The accuracy of the best KNeighborsClassifier is: 0.904762
-The recall of the best KNeighborsClassifier is: 0.641026
-The precision of the best KNeighborsClassifier is: 0.641026          
-
 2. Cross-validation for SVC
 
 SVC(C=0.5, cache_size=200, class_weight=None, coef0=0.0,
   decision_function_shape=None, degree=3, gamma='auto', kernel='linear',
   max_iter=-1, probability=False, random_state=None, shrinking=True,
   tol=0.1, verbose=False)
-
-  The accuracy of the best SVC is: 0.928571
-  The recall of the best SVC is: 0.500000
-  The precision of the best SVC is: 0.464286
 
 3. Cross-validation for AdaBoost
 
@@ -159,10 +164,6 @@ AdaBoostClassifier(algorithm='SAMME.R',
             presort=False, random_state=None, splitter='best'),
           learning_rate=1.0, n_estimators=50, random_state=None)
 
-The accuracy of the best AdaBoostClassifier is: 0.928571
-The recall of the best AdaBoostClassifier is: 0.653846
-The precision of the best AdaBoostClassifier is: 0.725000
-
 4. Conclusions
 The best estimator is AdaBoostClassifier in this project. The accuracy of our final POI classifier is 0.928571. The recall (the ratio of POIs this classifier could correctly recall to a number of all POIs) is 0.653846. It is not perfect, but is already the best in all the classifiers we tried in this project. The precision (the ratio of correctly classified POIs to the mix of correct and wrong recalls) in this project is less important than recall. We would want this classifier to recognize all possible POIs. Even if some of them are actually non-POIs, it is easier to exclude them later with further analysis than missing them totally. The precision of the final AdaBoostClassifier is 0.725, which is pretty good. In conclusion, AdaBoostClassifier is an effective POI classifier in this project.
 
@@ -170,7 +171,7 @@ The best estimator is AdaBoostClassifier in this project. The accuracy of our fi
 
 
 References:
-[1] https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/
-[2] http://machinelearningmastery.com/k-nearest-neighbors-for-machine-learning/
-[3] http://blog.echen.me/2011/04/27/choosing-a-machine-learning-classifier/
-[4] http://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/
+    [1] https://saravananthirumuruganathan.wordpress.com/2010/05/17/a-detailed-introduction-to-k-nearest-neighbor-knn-algorithm/
+    [2] http://machinelearningmastery.com/k-nearest-neighbors-for-machine-learning/
+    [3] http://blog.echen.me/2011/04/27/choosing-a-machine-learning-classifier/
+    [4] http://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/
