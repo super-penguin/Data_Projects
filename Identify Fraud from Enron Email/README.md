@@ -39,7 +39,11 @@ Collecting data for such a dramatic business failure was not easy. Although the 
 
 2. Histogram showing all the financial features and email features of both POI and Non-POI. It seems to have 1 or 2 extreme large values in most of the financial features, and they were from 'LAY KENNETH L' and 'SKILLING JEFFREY K'. Kenneth Lay and Jeffrey Skilling are both the major POIs involved in the scandal, thus it is not appropriate to consider them as outliers. In conclusion, all the data points are included in this project.
 
-    ![Histogram of the financial features](_https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/Identify%20Fraud%20from%20Enron%20Email/financial_features.png)
+
+
+    ![Histogram of the financial features](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/Identify%20Fraud%20from%20Enron%20Email/financial_features.png)
+
+
 
     ![Histogram of the email features](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/Identify%20Fraud%20from%20Enron%20Email/email_features.png)
 
@@ -105,7 +109,12 @@ Collecting data for such a dramatic business failure was not easy. Although the 
         | 'exercised_stock_percentage'    | 0.14069235754394752          |            |
 
         For the top 5 features, 'exercised_stock_options' is highly correlated with 'total_stock_value', 'Total_income' and 'restricted_stock', and it is moderately correlated with 'salary' as well.
+
+
+        
         ![Correlation matrix](https://github.com/super-penguin/Udacity_Data_Analyst/blob/master/Identify%20Fraud%20from%20Enron%20Email/correlation_matrix.png)
+
+
         Thus, in our initial testing phase, only 'poi' and 'exercised_stock_options' were used to train the dataset. In the next parameter tuning phase, PCA and SelectKBest will be used together to make feature selection.
 
     - Decision Tree Classifier
